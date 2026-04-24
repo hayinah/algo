@@ -1,42 +1,33 @@
-Algorithm 5
+Algorithm5(A, N)
 
-Algorithm5 (A,N)
+    B <- Array[N]
 
-B <- Array[N]
+    j <- 1
 
-j <- 1
+    while j < N - 1
 
-i <- 1
+        i <- 1
 
-while j < N - 1
+        while i < N - j
 
-i <- 1
+            p <- i
+            m <- i + j - 1
+            r <- min(i - 1 + 2*j, N)
 
-while i < N-j
+            for u <- m + 1 to p by -1
+                B[u - 1] <- A[u - 1]
 
-p <- i
+            for v <- m to r - 1
+                B[r - (m - v)] <- A[v + 1]
 
-m <- i+j-1
+            for w <- p to r
+                if B[v] < B[u]
+                    A[w] <- B[v--]
+                else
+                    A[w] <- B[u++]
 
-r <- min(i-1+2*j, N)
+            i <- i + 2*j
 
-for u <- m+1 to p by -1 
+        j <- 2*j
 
-B[u-1] <- A[u-1]
-
-for v <- m to r-1 
-
-B[r-|m-v] <- A[v+1]
-
-for w <- p to r
-if B[v] < B[u]
-A[w] <- B[v--]
-
-else 
-A[w] <- B[u++]
-
-i <- i + 2*j
-
-j <- 2*j
-
-return
+    return
