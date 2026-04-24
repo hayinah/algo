@@ -1,39 +1,30 @@
-Algorithm 1:
-
 Algorithm1(A)
 
-B[1..N] <- 0
+    B[1..N] <- 0
+    Compute(A, B, 1)
+    return
 
-Compute (A,B,1)
 
-return
+Compute(A, B, i)
 
-Compute (A,B,i)
+    if i > N
+        Dump(B)
+        return
 
-if i > N
+    B[i] <- 0
+    Compute(A, B, i + 1)
 
-Dump(B)
+    B[i] <- A[i]
+    Compute(A, B, i + 1)
 
-return
+    B[i] <- 0
+    return
 
-B[i] <- 0
-
-Compute (A,B, i+1)
-
-B[i] <- A[i]
-
-Compute (A,B, i+1)
-
-B[i] <- 0
-
-return
 
 Dump(B)
 
-for i <- 1 to N
+    for i <- 1 to N
+        if B[i] ≠ 0
+            Print B[i]
 
-if B[j] â‰  0
-
-Print B[i]
-
-return
+    return
