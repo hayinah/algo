@@ -1,17 +1,16 @@
-Algorithm 7 
+Algorithm7(A, N)
 
-Algorithm7 (A,N)
+    B <- Array[N]
+    B[1..N] <- 0
 
-B <- Array[N]
-B[1..N] <- 0
-for i <- 1 to N
+    for i <- 1 to N
+        B[A[i]]++
 
-B{A|i]]++
-i <-1
-for j <- 1 to N 
-for k <- 0 to B[j]
+    i <- 1
 
-A[i] <- j
-i++
+    for j <- 1 to N
+        for k <- 1 to B[j]
+            A[i] <- j
+            i++
 
-return
+    return
