@@ -1,0 +1,22 @@
+Algorithm 6 
+
+
+Algorithm6 (A, i, N)
+if i = N 
+for j <- 1 to N-1 by 1
+if A[j] > A[j+1]
+return false 
+return true 
+
+if (Algorithm6(A, i+1, N))
+
+return true
+
+for j <- i+1 to N by 1
+
+swap (A|i], A[j])
+if (Algorithm6(A,i+1,n))
+return true
+
+swap (A|i], A[j])
+return false
