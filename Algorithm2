@@ -1,42 +1,43 @@
-Algorithm 2:
-
 Algorithm2(A)
 
+    Compute(A)
+    Dump(A)
+    return
+
+
 Compute(A)
+
+    size <- |√N| + 1
+    Z[1..size] <- EmptyList
+
+    for i <- 1 to N
+        append A[i] to end of Z[A[i] mod size]
+
+    counter <- 1
+
+    for i <- 1 to size
+        while Z[i] is not empty
+            A[counter] <- FirstElement(Z[i])
+            counter++
+            DeleteFirstElement(Z[i])
+
+    for i <- 1 to N
+        append A[i] to end of Z[A[i] / size]
+
+    counter <- 1
+
+    for i <- 1 to size
+        while Z[i] is not empty
+            A[counter] <- FirstElement(Z[i])
+            counter++
+            DeleteFirstElement(Z[i])
+
+    return
+
+
 Dump(A)
-return
 
-Compute(A)
-size <- |âˆšN| + 1
-Z|1..size| <- EmptyList
-for i <- 1 to N
-append A[i] to end of Z[A|i] mod size]
-counter <- 1
-for i <- 1 to size 
-while Z[i] is not empty
-A[counter] <- FirstElement(Z|i])
-counter++
-DeleteFirstElement(Z|i])
+    for i <- 1 to N
+        print A[i]
 
-for i <- to N
-
-append A[i] to end of Z[A|i]/size] 
-counter <- 1
-
-for i <- 1 to size 
-
-while Z[i] is not empty 
-A[counter] <- FirstElement (Z|i])
-
-counter++
-
-DeleteFirstElement(Z|i)
-
-return 
-
-Dump(B)
-
-for i <- 1 to N 
-print B[i]
-
-return 
+    return
