@@ -1,26 +1,23 @@
-Algorithm 8
+Algorithm8(A, N)
 
-Algorithm8 (A,N)
+    i <- 1
+    j <- N
 
-i <- 1
-j <- N
+    while i < j
 
-while (i < j)
+        for k <- i to j - 1
+            CompSwap(A[k], A[k + 1])
 
-for k <- i to j-1
+        for k <- j - 1 to i + 1 by -1
+            CompSwap(A[k - 1], A[k])
 
-CompSwap(A|k], A[k+1])
+        i++
+        j--
 
-for k <- j - 1 to i+1 by -1
-CompSwap(A|k-1], A|k])
+    return
 
-i++ 
-j--
 
-return
+CompSwap(x, y)
 
-CompSwap(x,y)
-if x > y
-swap (x,y)
-
-          
+    if x > y
+        swap(x, y)
