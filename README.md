@@ -39,5 +39,5 @@ This project focuses on analyzing 8 anonymous algorithms provided in pseudocode.
 In progress – algorithms are being analyzed, implemented, and tested.
 
 ## Authors
-- [Your Name]
-- [Partner’s Name]
+- [Aniyah Gilliam]
+- [Aaron Chappell ]
