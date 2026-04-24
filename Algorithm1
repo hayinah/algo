@@ -23,7 +23,7 @@ Compute(A, B, i)
 
 Dump(B)
 
-    for i <- 1 to N
+    for i <- 1 to N                          // prints array if index isnt 0
         if B[i] ≠ 0
             Print B[i]
 
