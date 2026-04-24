@@ -24,7 +24,7 @@ This project focuses on analyzing 8 anonymous algorithms provided in pseudocode.
 - algorithm5.cpp – Merge Sort (bottom-up)
 - algorithm6.cpp – Permutation-based sorting check
 - algorithm7.cpp – Counting Sort
-- algorithm8.cpp – Cocktail Shaker Sort
+- algorithm8.cpp – BiDirectional Bubble Sort
 - results/ – Runtime data and analysis
 - report/ – Final written report
 
