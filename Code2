@@ -1,4 +1,4 @@
-
+//Radix Sort
 #include <iostream>
 #include <vector>
 #include <list>
@@ -6,34 +6,38 @@
 using namespace std;
 
 void algorithm2(vector<int>& A) {
-    int N = A.size();
-    int size = sqrt(N) + 1;
+    int N = A.size();                 // Total number of elements
+    int size = sqrt(N) + 1;           // Number of buckets (~√N)
 
-    vector<list<int>> Z(size);
+    vector<list<int>> Z(size);        // Create 'size' buckets (each is a list)
 
-    // First pass (mod)
+    //FIRST PASS: group by remainder (A[i] % size) 
     for (int i = 0; i < N; i++) {
-        Z[A[i] % size].push_back(A[i]);
+        int bucketIndex = A[i] % size;   // Compute remainder
+        Z[bucketIndex].push_back(A[i]); // Put element into corresponding bucket
     }
 
+    // Collect elements back into A (in bucket order)
     int counter = 0;
     for (int i = 0; i < size; i++) {
         while (!Z[i].empty()) {
-            A[counter++] = Z[i].front();
-            Z[i].pop_front();
+            A[counter++] = Z[i].front(); // Take front element from bucket
+            Z[i].pop_front();            // Remove it from bucket
         }
     }
 
-    // Second pass (division)
+    // -------- SECOND PASS: group by division (A[i] / size) --------
     for (int i = 0; i < N; i++) {
-        Z[A[i] / size].push_back(A[i]);
+        int bucketIndex = A[i] / size;   // Compute quotient
+        Z[bucketIndex].push_back(A[i]); // Place into new bucket
     }
 
+    // Collect elements back into A again
     counter = 0;
     for (int i = 0; i < size; i++) {
         while (!Z[i].empty()) {
-            A[counter++] = Z[i].front();
-            Z[i].pop_front();
+            A[counter++] = Z[i].front(); // Copy back into array
+            Z[i].pop_front();            // Remove from bucket
         }
     }
 }
