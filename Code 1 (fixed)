@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Prints all nonzero values in B (Subset)
+void dump(const vector<int>& B) {
+    for (size_t i = 0; i < B.size(); ++i) {
+        if (B[i] != 0) {
+            cout << B[i] << " ";
+        }
+    }
+    cout << endl;
+}
+
+// Recursively builds all possible subsets
+void compute(vector<int>& A, vector<int>& B, int i) {
+    // A.size() returns a value we compare against our counter i
+    if (i >= (int)A.size()) {
+        dump(B);
+        return;
+    }
+
+    // Path 1: Exclude A[i] (mark as 0 in the helper array)
+    B[i] = 0;
+    compute(A, B, i + 1);
+
+    // Path 2: Include A[i] (copy value from A to B)
+    B[i] = A[i];
+    compute(A, B, i + 1);
+}
+
+// Helper function to initialize the process
+void algorithm1(vector<int>& A) {
+    // Create vector B of the same size as A, filled with 0s
+    vector<int> B(A.size(), 0);
+    compute(A, B, 0);
+}
+
+int main() {
+    // INSTEAD OF PUSH_BACK:
+    // 1. Create a standard C-style array
+    int initialData[] = {1, 2, 3};
+    int N = sizeof(initialData) / sizeof(initialData[0]);
+
+    // 2. Initialize the vector using the array range
+    // This works in C++98 and avoids push_back entirely
+    vector<int> A(initialData, initialData + N);
+
+    cout << "Generating all subsets:" << endl;
+    algorithm1(A);
+
+    return 0;
+}
