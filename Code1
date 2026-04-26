@@ -1,27 +1,35 @@
 #include <iostream>
-#include <vector>
-usign namespace std;
+#include <vector>                                           // we're includng vector because we need the array to be dynamic
+usign namespace std;                                        // Size of A
 
-void dump(const vector<int>& B)  {
-  for (int x : B) {
+//prints all nonzero values in B (Subset)
+
+void dump(const vector<int>& B)  {                          //passing original vector,  unchangebale in this function
+  for (int x : B) {                                         //goes through every element in B
     if (x != 0) cout << x << " ";
   }
 cout << endl;
 }
+//recursively builds  all possible subsets by choosing for
+//index i: exlcude or include A[i]
 
 void compute(vector<int>& A, vector <int>& B, int i) {
-  if (i>= A.size()) {
-      dump (B):
+  if (i>= A.size()) {                                     // once you go past last index, print, and if all elements are processed
+      dump (B):                                           
       return;
 }
 
+//exclude a[i] (mark as  0)
 B[i] = 0;
-compute(A, B, i + 1);
+compute(A, B, i + 1);                                    
 
+//include a[i] 
 B[i] =  A[i];
 compute(A, B, i + 1);
 }
 
+//helper array, each recursive call temp fills
+//when and dumps when base case is filled
 void algorithm1(vector<int>& A) {
   vector <int> B(A.size(), 0);
   compute (A, B, 0);
