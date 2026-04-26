@@ -15,4 +15,14 @@ void compute(vector<int>& A, vector <int>& B, int i) {
       return;
 }
 
-B[i]
+B[i] = 0;
+compute(A, B, i + 1);
+
+B[i] =  A[i];
+compute(A, B, i + 1);
+}
+
+void algorithm1(vector<int>& A) {
+  vector <int> B(A.size(), 0);
+  compute (A, B, 0);
+}
