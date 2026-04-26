@@ -1,4 +1,4 @@
-//Radix Sort
+//Radix / Bucket Sort
 #include <iostream>
 #include <vector>
 #include <list>
