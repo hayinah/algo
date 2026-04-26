@@ -1,0 +1,55 @@
+//Quickselect
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+using namespace std;
+
+// PARTITION FUNCTION!
+// Rearranges the array so that:
+// - elements < pivot are on the left
+// - elements >= pivot are on the right
+// Returns the final position of the pivot
+
+int partition(vector<int>& A, int p, int r) {
+    int pivot = A[r];      // Choose last element as pivot
+    int q = p - 1;         // Boundary for elements smaller than pivot
+
+    for (int j = p; j < r; j++) {
+        if (A[j] < pivot) {
+            q++;                      // Expand "smaller elements" region
+            swap(A[q], A[j]);         // Move smaller element to left side
+        }
+    }
+
+    swap(A[q + 1], A[r]);  // Place pivot in correct sorted position
+    return q + 1;          // Return pivot index
+}
+
+
+// QUICKSELECT FUNCTION!
+// Finds the i-th smallest element in A[p...r]
+int quickselect(vector<int>& A, int p, int r, int i) {
+    
+    // Base case: only one element
+    if (p == r) return A[p];
+
+    // Pick a random pivot index between p and r
+    int pivotIndex = p + rand() % (r - p + 1);
+    swap(A[pivotIndex], A[r]);   // Move pivot to end
+
+    // Partition the array around the pivot
+    int q = partition(A, p, r);
+
+    // Number of elements in left partition INCLUDING pivot
+    int k = q - p + 1;
+
+    // -------- DECISION STEP --------
+    if (i == k) 
+        return A[q];                     // Pivot is the i-th smallest
+
+    else if (i < k) 
+        return quickselect(A, p, q - 1, i);     // Search left side
+
+    else 
+        return quickselect(A, q + 1, r, i - k); // Search right side (adjust i)
+}
