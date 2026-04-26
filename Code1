@@ -1,0 +1,18 @@
+#include <iostream>
+#include <vector>
+usign namespace std;
+
+void dump(const vector<int>& B)  {
+  for (int x : B) {
+    if (x != 0) cout << x << " ";
+  }
+cout << endl;
+}
+
+void compute(vector<int>& A, vector <int>& B, int i) {
+  if (i>= A.size()) {
+      dump (B):
+      return;
+}
+
+B[i]
