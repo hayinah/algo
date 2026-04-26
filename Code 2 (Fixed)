@@ -1,0 +1,64 @@
+#include <iostream>
+#include <vector>
+#include <list>
+#include <cmath>
+
+using namespace std;
+
+// Your algorithm function
+void algorithm2(vector<int>& A) {
+    if (A.empty()) return;
+
+    int N = A.size();
+    int size = sqrt(N) + 1;
+
+    vector<list<int> > Z(size); 
+
+    for (int i = 0; i < N; i++) {
+        int bucketIndex = A[i] % size;
+        Z[bucketIndex].push_back(A[i]); 
+    }
+
+    int counter = 0;
+    for (int i = 0; i < size; i++) {
+        while (!Z[i].empty()) {
+            A[counter++] = Z[i].front();
+            Z[i].pop_front();
+        }
+    }
+
+    for (int i = 0; i < N; i++) {
+        int bucketIndex = A[i] / size;
+        if (bucketIndex >= size) bucketIndex = size - 1; 
+        Z[bucketIndex].push_back(A[i]); 
+    }
+
+    counter = 0;
+    for (int i = 0; i < size; i++) {
+        while (!Z[i].empty()) {
+            A[counter++] = Z[i].front();
+            Z[i].pop_front();
+        }
+    }
+}
+
+// --- ADD THIS MAIN FUNCTION ---
+int main() {
+    // Example data to test your algorithm
+    int arr[] = {170, 45, 75, 90, 802, 24, 2, 66};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    vector<int> data(arr, arr + n);
+
+    cout << "Before sorting: ";
+    for (int i = 0; i < data.size(); i++) cout << data[i] << " ";
+    cout << endl;
+
+    // Call your algorithm
+    algorithm2(data);
+
+    cout << "After sorting:  ";
+    for (int i = 0; i < data.size(); i++) cout << data[i] << " ";
+    cout << endl;
+
+    return 0;
+}
