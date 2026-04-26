@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>                                           // we're includng vector because we need the array to be dynamic
-usign namespace std;                                        // Size of A
+using namespace std;                                        // Size of A
 
 //prints all nonzero values in B (Subset)
 
@@ -15,7 +15,7 @@ cout << endl;
 
 void compute(vector<int>& A, vector <int>& B, int i) {
   if (i>= A.size()) {                                     // once you go past last index, print, and if all elements are processed
-      dump (B):                                           
+      dump (B);                                           
       return;
 }
 
