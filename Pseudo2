@@ -11,7 +11,7 @@ Compute(A)
     Z[1..size] <- EmptyList
 
     for i <- 1 to N
-        append A[i] to end of Z[A[i] mod size]
+        append A[i] to end of Z[A[i] mod size]    // sorting based on a digit or component of the number
 
     counter <- 1
 
@@ -22,13 +22,13 @@ Compute(A)
             DeleteFirstElement(Z[i])
 
     for i <- 1 to N
-        append A[i] to end of Z[A[i] / size]
-
+        append A[i] to end of Z[A[i] / size]       // sorting based on a DIFFERENT digit or component of the number
+                                                  // processes digits in passes
     counter <- 1
 
     for i <- 1 to size
-        while Z[i] is not empty
-            A[counter] <- FirstElement(Z[i])
+        while Z[i] is not empty                   // buckets are processed in order.. elements are written back into the array                                         // this partially sorts the array
+            A[counter] <- FirstElement(Z[i])      // this partially sorts the array
             counter++
             DeleteFirstElement(Z[i])
 
