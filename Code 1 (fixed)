@@ -1,3 +1,4 @@
+// this generates all subsets of an array
 #include <iostream>
 #include <vector>                                     //  including vector because we need the array to be dynamic
 
