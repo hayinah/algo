@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <vector>                                     //  including vector because we need the array to be dynamic
 
 using namespace std;
 
