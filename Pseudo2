@@ -7,7 +7,7 @@ Algorithm2(A)
 
 Compute(A)
 
-    size <- |√N| + 1
+    size <- |√N| + 1                               // creates multiple buckets (lists)
     Z[1..size] <- EmptyList
 
     for i <- 1 to N
