@@ -24,7 +24,7 @@ Compute(A, B, C)
         n <- -1
 
         for j <- i - 1 to 1
-            if A[j] < A[i]
+            if A[j] < A[i]                     //forcing increasing order
                 if B[j] > m
                     m <- B[j]
                     n <- j
