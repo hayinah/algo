@@ -44,7 +44,7 @@ int main() {
     int N = sizeof(initialData) / sizeof(initialData[0]);
 
     // 2. Initialize the vector using the array range
-    // This works in C++98 and avoids push_back entirely
+    // Thisavoids push_back entirely
     vector<int> A(initialData, initialData + N);
 
     cout << "Generating all subsets:" << endl;
