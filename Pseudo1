@@ -7,14 +7,14 @@ Algorithm1(A)
 
 Compute(A, B, i)
 
-    if i > N
+    if i > N                                     // if all decisions are made, print one subset
         Dump(B)
         return
 
-    B[i] <- 0
-    Compute(A, B, i + 1)
+    B[i] <- 0                                         // exclude
+    Compute(A, B, i + 1)                             
 
-    B[i] <- A[i]
+    B[i] <- A[i                                      // include
     Compute(A, B, i + 1)
 
     B[i] <- 0
