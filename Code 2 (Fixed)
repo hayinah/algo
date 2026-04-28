@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// Your algorithm function
+// 
 void algorithm2(vector<int>& A) {
     if (A.empty()) return;
 
