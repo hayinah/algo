@@ -43,7 +43,7 @@ void algorithm2(vector<int>& A) {
     }
 }
 
-// --- ADD THIS MAIN FUNCTION ---
+// MAIN FUNCTION
 int main() {
     // Example data to test your algorithm
     int arr[] = {170, 45, 75, 90, 802, 24, 2, 66};
