@@ -1,16 +1,17 @@
 // this generates all subsets of an array
 #include <iostream>
 #include <vector>                                     //  including vector because we need the array to be dynamic
+#include <chrono>
 
 using namespace std;
 
 // Prints all nonzero values in B (Subset)
 void dump(const vector<int>& B) {
     for (size_t i = 0; i < B.size(); ++i) {
-        if (B[i] != 0) {
+       
             cout << B[i] << " ";
         }
-    }
+    
     cout << endl;
 }
 
@@ -41,15 +42,27 @@ void algorithm1(vector<int>& A) {
 int main() {
     // INSTEAD OF PUSH_BACK:
     // 1. Create a standard C-style array
-    int initialData[] = {1, 2, 3};
-    int N = sizeof(initialData) / sizeof(initialData[0]);
+    int n;
+    cout << "Enter value of n: ";
+    cin >> n;
 
     // 2. Initialize the vector using the array range
     // Thisavoids push_back entirely
-    vector<int> A(initialData, initialData + N);
+    vector<int> A(n);
+    
+    for (int i = 0; i < n; i++) {
+        A[i] = i + 1;
+    }
 
+    auto start = chrono::high_resolution_clock::now();
+    
     cout << "Generating all subsets:" << endl;
     algorithm1(A);
 
+    auto stop = chrono::high_resolution_clock::now();
+    
+    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+    
+    cout << "\nRuntime: " << duration.count() << " ms" << endl;
     return 0;
 }
