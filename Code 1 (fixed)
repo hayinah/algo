@@ -54,7 +54,7 @@ int main() {
         A[i] = i + 1;
     }
 
-    auto start = chrono::high_resolution_clock::now();
+    auto start = chrono::high_resolution_clock::now();                      // this is how we get our runtime
     
     cout << "Generating all subsets:" << endl;
     algorithm1(A);
