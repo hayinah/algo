@@ -6,38 +6,35 @@ using namespace std;
 
 // Helper function to print the LIS using recursion
 void printLIS(vector<int>& A, vector<int>& C, int i) {
-    if (i < 0) return;              // Base case: no more elements
-    printLIS(A, C, C[i]);           // Recursively go to previous index in LIS
-    cout << A[i] << " ";            // Print current element AFTER recursion (correct order)
+    if (i < 0) return;
+    printLIS(A, C, C[i]);
+    cout << A[i] << " ";
 }
 
 void algorithm3(vector<int>& A) {
     int N = A.size();
+    if (N == 0) return;
 
-    vector<int> B(N, 1);   // B[i] = length of LIS ending at index i
-    vector<int> C(N, -1);  // C[i] = index of previous element in LIS (for reconstruction)
+    vector<int> B(N, 1);
+    vector<int> C(N, -1);
 
-    // 1. Build LIS lengths
     for (int i = 1; i < N; i++) {
-        int m = 0;   // stores best LIS length found so far
-        int n = -1;  // stores index of previous element in LIS
+        int m = 0;
+        int n = -1;
 
-        // Looks at all previous elements
         for (int j = i - 1; j >= 0; j--) {
-            // If A[j] can extend the increasing subsequence ending at A[i]
             if (A[j] < A[i] && B[j] > m) {
-                m = B[j];   // update best length
-                n = j;      // remember index
+                m = B[j];
+                n = j;
             }
         }
 
-        B[i] = m + 1;   // LIS ending at i includes A[i]
-        C[i] = n;       // store where it came from
+        B[i] = m + 1;
+        C[i] = n;
     }
 
-    //2.Find overall LIS 
-    int maxLen = 1;  // length of longest LIS found
-    int idx = 0;     // index where LIS ends
+    int maxLen = 1;
+    int idx = 0;
 
     for (int i = 0; i < N; i++) {
         if (B[i] > maxLen) {
@@ -46,11 +43,13 @@ void algorithm3(vector<int>& A) {
         }
     }
 
-    //3. Print LIS
-    printLIS(A, C, idx);   // reconstruct sequence using C[]
+    //  CLEAR OUTPUT
+    cout << "LIS: ";
+    printLIS(A, C, idx);
     cout << endl;
-}
 
+    cout << "Length of LIS: " << maxLen << endl;
+}
 
 int main() {
     int n;
@@ -59,21 +58,21 @@ int main() {
 
     vector<int> A(n);
 
-    // Fill array with random values
     for (int i = 0; i < n; i++) {
         A[i] = rand() % 1000;
     }
 
-    cout << "Array: ";
-    for (int i = 0; i < n; i++) cout << A[i] << " ";
-    cout << endl;
+    //  Only print small arrays
+    if (n <= 20) {
+        cout << "Array: ";
+        for (int i = 0; i < n; i++) cout << A[i] << " ";
+        cout << endl;
+    }
 
-    // START TIMER
     auto start = chrono::high_resolution_clock::now();
 
     algorithm3(A);
 
-    // STOP TIMER
     auto stop = chrono::high_resolution_clock::now();
 
     auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
