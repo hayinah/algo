@@ -1,6 +1,7 @@
 //Longest Increasing Subsequence (LIS)
 #include <iostream>
 #include <vector>
+#include <chrono>
 using namespace std;
 
 // Helper function to print the LIS using recursion
@@ -48,4 +49,36 @@ void algorithm3(vector<int>& A) {
     //3. Print LIS
     printLIS(A, C, idx);   // reconstruct sequence using C[]
     cout << endl;
+}
+
+
+int main() {
+    int n;
+    cout << "Enter value of n: ";
+    cin >> n;
+
+    vector<int> A(n);
+
+    // Fill array with random values
+    for (int i = 0; i < n; i++) {
+        A[i] = rand() % 1000;
+    }
+
+    cout << "Array: ";
+    for (int i = 0; i < n; i++) cout << A[i] << " ";
+    cout << endl;
+
+    // START TIMER
+    auto start = chrono::high_resolution_clock::now();
+
+    algorithm3(A);
+
+    // STOP TIMER
+    auto stop = chrono::high_resolution_clock::now();
+
+    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+
+    cout << "Runtime: " << duration.count() << " ms" << endl;
+
+    return 0;
 }
