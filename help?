@@ -1,84 +1,35 @@
-//Radix/Bucket Source
-#include <iostream>
-#include <vector>
-#include <list>
-#include <cmath>
-#include <chrono>
-
-using namespace std;
-
-// 
-void algorithm2(vector<int>& A) {
-    if (A.empty()) return;
-
-    int N = A.size();
-    int size = sqrt(N) + 1;
-
-    vector<list<int> > Z(size); 
-
-    for (int i = 0; i < N; i++) {
-        int bucketIndex = A[i] % size;
-        Z[bucketIndex].push_back(A[i]); 
-    }
-
-    int counter = 0;
-    for (int i = 0; i < size; i++) {
-        while (!Z[i].empty()) {
-            A[counter++] = Z[i].front();
-            Z[i].pop_front();
-        }
-    }
-
-    for (int i = 0; i < N; i++) {
-        int bucketIndex = A[i] / size;
-        if (bucketIndex >= size) bucketIndex = size - 1; 
-        Z[bucketIndex].push_back(A[i]); 
-    }
-
-    counter = 0;
-    for (int i = 0; i < size; i++) {
-        while (!Z[i].empty()) {
-            A[counter++] = Z[i].front();
-            Z[i].pop_front();
-        }
-    }
-}
-
-// MAIN FUNCTION
 int main() {
 
     int n; 
     cout << "Enter value of n: ";
     cin >> n;
 
-    vector <int> data(n);
+    vector<int> data(n);
 
-    for (int i = 0; i < n; i++){
-            data[i] = rand () % 1000;
+    for (int i = 0; i < n; i++) {
+        data[i] = rand() % 1000;
     }
 
     cout << "Before sorting: ";
     for (int i = 0; i < data.size(); i++) cout << data[i] << " ";
     cout << endl;
 
-    // Call your algorithm
+    // START TIMER
+    auto start = chrono::high_resolution_clock::now();
+
     algorithm2(data);
+
+    // STOP TIMER
+    auto stop = chrono::high_resolution_clock::now();
+
+    // COMPUTE DURATION
+    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
 
     cout << "After sorting:  ";
     for (int i = 0; i < data.size(); i++) cout << data[i] << " ";
     cout << endl;
+
     cout << "Runtime: " << duration.count() << " ms" << endl;
-
-    auto start = chrono::high_resolution_clock::now();                      // this is how we get our runtime
-    
-    cout << "Generating all subsets:" << endl;
-    algorithm2(data);
-
-    auto stop = chrono::high_resolution_clock::now();
-    
-    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
-    
-
 
     return 0;
 }
