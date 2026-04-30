@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <algorithm> // For swap
 #include <ctime>     // For seeding rand()
+#include <chrono>
 
 using namespace std;
 
@@ -42,16 +43,40 @@ int quickselect(vector<int>& A, int p, int r, int i) {
 }
 
 int main() {
-    // Seed the random number generator
     srand(time(0));
 
-    // Example: Find the 3rd smallest element (which is 7)
-    int arr[] = {12, 3, 5, 7, 4, 19, 26};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    vector<int> A(arr, arr + n);
+    int n;
+    cout << "Enter value of n: ";
+    cin >> n;
 
-    int i = 3; 
-    cout << "The " << i << "rd smallest element is: " << quickselect(A, 0, n - 1, i) << endl;
+    vector<int> A(n);
+
+    // Fill with random values
+    for (int j = 0; j < n; j++) {
+        A[j] = rand() % 1000;
+    }
+
+    // Choose i (k-th smallest)
+    int i;
+    cout << "Enter i (which smallest element to find): ";
+    cin >> i;
+
+    cout << "Array: ";
+    for (int j = 0; j < n; j++) cout << A[j] << " ";
+    cout << endl;
+
+    // START TIMER
+    auto start = chrono::high_resolution_clock::now();
+
+    int result = quickselect(A, 0, n - 1, i);
+
+    // STOP TIMER
+    auto stop = chrono::high_resolution_clock::now();
+
+    auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
+
+    cout << "The " << i << "th smallest element is: " << result << endl;
+    cout << "Runtime: " << duration.count() << " microseconds" << endl;
 
     return 0;
 }
