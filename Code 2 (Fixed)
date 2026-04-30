@@ -68,5 +68,16 @@ int main() {
     for (int i = 0; i < data.size(); i++) cout << data[i] << " ";
     cout << endl;
 
+    auto start = chrono::high_resolution_clock::now();                      // this is how we get our runtime
+    
+    cout << "Generating all subsets:" << endl;
+    algorithm1(A);
+
+    auto stop = chrono::high_resolution_clock::now();
+    
+    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+    
+
+
     return 0;
 }
