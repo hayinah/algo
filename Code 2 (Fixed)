@@ -51,34 +51,32 @@ int main() {
     cout << "Enter value of n: ";
     cin >> n;
 
-    vector <int> data(n);
+    vector<int> data(n);
 
-    for (int i = 0; i < n; i++){
-            data[i] = rand () % 1000;
+    for (int i = 0; i < n; i++) {
+        data[i] = rand() % 1000;
     }
 
     cout << "Before sorting: ";
     for (int i = 0; i < data.size(); i++) cout << data[i] << " ";
     cout << endl;
 
-    // Call your algorithm
+    // START TIMER
+    auto start = chrono::high_resolution_clock::now();
+
     algorithm2(data);
+
+    // STOP TIMER
+    auto stop = chrono::high_resolution_clock::now();
+
+    // COMPUTE DURATION
+    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
 
     cout << "After sorting:  ";
     for (int i = 0; i < data.size(); i++) cout << data[i] << " ";
     cout << endl;
+
     cout << "Runtime: " << duration.count() << " ms" << endl;
-
-    auto start = chrono::high_resolution_clock::now();                      // this is how we get our runtime
-    
-    cout << "Generating all subsets:" << endl;
-    algorithm1(A);
-
-    auto stop = chrono::high_resolution_clock::now();
-    
-    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
-    
-
 
     return 0;
 }
